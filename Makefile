@@ -16,5 +16,5 @@ $(ART)/%.class: %.java
 	@$(JAVAC) $< -d $(ART)
 
 clean:
-	@for ARTIFACT in $(wildcard $(ART)/*); do echo "RM   $$ARTIFACT"; done
+	@echo "RM $(ART)/"
 	@rm -rf $(ART)
