@@ -18,7 +18,7 @@ public class DesktopBob
 
 		while (true)
 		{
-			bob.setDirection('R');
+			bob.setDirection(Bob.Direction.RIGHT);
 
 			while (bob.getX() < x + 900)
 			{
@@ -27,7 +27,7 @@ public class DesktopBob
 
 			bob.jump(jumps);
 
-			bob.setDirection('L');
+			bob.setDirection(Bob.Direction.LEFT);
 
 			while (bob.getX() > x)
 			{

@@ -4,11 +4,18 @@ import java.util.concurrent.TimeUnit;
 
 public class Bob
 {
+	public enum Direction
+	{
+		LEFT,
+		RIGHT
+	}
+
 	private int x;
 	private int y;
 	private int speed;
 	private int animationDelay;
-	private char direction;
+	private Direction direction;
+
 	private JFrame sprite;
 	private JLabel image;
 	private ImageIcon [] costumes;
@@ -21,7 +28,7 @@ public class Bob
 		y = 0;
 		speed = 0;
 		animationDelay = 0;
-		direction = 'R';
+		direction = Direction.RIGHT;
 		sprite = null;
 		image = null;
 		costumes = null;
@@ -35,7 +42,7 @@ public class Bob
 		this.y = y;
 		this.speed = speed;
 		this.animationDelay = animationDelay;
-		direction = 'R';
+		direction = Direction.RIGHT;
 
 		sprite = new JFrame("Bob");
 		sprite.setSize(50, 46);
@@ -46,10 +53,7 @@ public class Bob
 		image = new JLabel();
 		sprite.add(image);
 
-		// Create array of Bob's costumes //
-
-		// /Users/Kyle/Documents/Java Projects/Desktop Bob/
-
+		// create array of Bob's costumes
 		costumes = new ImageIcon[6];
 		costumes[0] = new ImageIcon("costumes/Bob R.png");
 		costumes[1] = new ImageIcon("costumes/Bob Forward R.png");
@@ -64,23 +68,38 @@ public class Bob
 		sprite.setVisible(true);
 	}
 
-	// GET / SET ("x") //
+	// ACCESSORS //
 
 	public int getX()
 	{
 		return x;
 	}
 
-	public void setX(int x)
-	{
-		this.x = x;
-	}
-
-	// GET / SET ("y") //
-
 	public int getY()
 	{
 		return y;
+	}
+
+	public int getAnimationDelay()
+	{
+		return animationDelay;
+	}
+
+	public int getSpeed()
+	{
+		return speed;
+	}
+
+	public Direction getDirection()
+	{
+		return direction;
+	}
+
+	// MUTATORS //
+
+	public void setX(int x)
+	{
+		this.x = x;
 	}
 
 	public void setY(int y)
@@ -88,23 +107,9 @@ public class Bob
 		this.y = y;
 	}
 
-	// GET / SET ("speed") //
-
-	public int getSpeed()
-	{
-		return speed;
-	}
-
 	public void setSpeed(int speed)
 	{
 		this.speed = speed;
-	}
-
-	// GET / SET ("animationDelay") //
-
-	public int getAnimationDelay()
-	{
-		return animationDelay;
 	}
 
 	public void setAnimationDelay(int animationDelay)
@@ -112,14 +117,7 @@ public class Bob
 		this.animationDelay = animationDelay;
 	}
 
-	// GET / SET ("direction") //
-
-	public int getDirection()
-	{
-		return direction;
-	}
-
-	public void setDirection(char direction)
+	public void setDirection(Direction direction)
 	{
 		this.direction = direction;
 	}
@@ -128,7 +126,7 @@ public class Bob
 
 	public void walk() throws InterruptedException
 	{
-		if (direction == 'R')
+		if (direction == Direction.RIGHT)
 		{
 			for (int i = 0; i < 3; i++)
 			{
@@ -139,7 +137,7 @@ public class Bob
 
 			image.setIcon(costumes[0]);
 		}
-		else if (direction == 'L')
+		else if (direction == Direction.LEFT)
 		{
 			for (int i = 3; i < 6; i++)
 			{
@@ -152,20 +150,20 @@ public class Bob
 		}
 	}
 
-	public void jump(int jumpCount) throws InterruptedException
+	public void jump(int jumps) throws InterruptedException
 	{
-		if (direction == 'R')
+		if (direction == Direction.RIGHT)
 		{
 			image.setIcon(costumes[0]);
 			TimeUnit.MILLISECONDS.sleep(200);
 		}
-		else if (direction == 'L')
+		else if (direction == Direction.LEFT)
 		{
 			image.setIcon(costumes[3]);
 			TimeUnit.MILLISECONDS.sleep(200);
 		}
 
-		for (int i = 0; i < jumpCount; i++)
+		for (int i = 0; i < jumps; i++)
 		{
 			sprite.setLocation(x, y - 14);
 			TimeUnit.MILLISECONDS.sleep(100);
@@ -179,7 +177,7 @@ public class Bob
 	@Override
 	public String toString()
 	{
-		return String.format("X: %d   Y: %d   Direction: %c", x, y, direction);
+		return String.format("X: %4d Y: %4d Direction: %s", x, y, direction);
 	}
 
 } // end of class Bob
