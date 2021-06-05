@@ -1,42 +1,74 @@
+import java.awt.*;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
 
 public class DesktopBob
 {
-	public static void main(String [] args) throws InterruptedException
+	public static void main(String [] args) throws Exception
 	{
-		if (args.length != 3)
-		{
-			System.out.println("Incorrect arguments");
-			System.out.println("Usage: DesktopBob <x> <y> <jumps>");
-			return;
-		}
+		Dimension screenDimensions = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = (int)(screenDimensions.getWidth());
+		int screenHeight = (int)(screenDimensions.getHeight());
 
-		int x = Integer.parseInt(args[0]);
-		int y = Integer.parseInt(args[1]);
-		int jumps = Integer.parseInt(args[2]);
+		int [] dockDimensions = getDockDimensions();
+		int dockWidth = dockDimensions[0];
+		int dockHeight = dockDimensions[1];
 
-		Bob bob = new Bob(x, y, 4, 110);
+		int dockMidpoint = screenWidth / 2;
+		int xMin = dockMidpoint - (dockWidth / 2) + 30;
+		int xMax = dockMidpoint + (dockWidth / 2) - 50;
+		int y = screenHeight - dockHeight - 35;
+		int speed = 4;
+
+		Bob bob = new Bob(xMin, y, speed, 110);
 
 		while (true)
 		{
 			bob.setDirection(Bob.Direction.RIGHT);
+			bob.wait(200);
 
-			while (bob.getX() < x + 900)
+			while (bob.getX() + speed < xMax)
 			{
 				bob.walk();
 			}
-
-			bob.jump(jumps);
 
 			bob.setDirection(Bob.Direction.LEFT);
+			bob.wait(200);
 
-			while (bob.getX() > x)
+			while (bob.getX() - speed > xMin)
 			{
 				bob.walk();
 			}
-
-			bob.jump(jumps);
 		}
 
 	} // end of main()
+
+	public static int [] getDockDimensions() throws Exception
+	{
+		Runtime runtime = Runtime.getRuntime();
+		String command = "tell application \"System Events\" to " +
+		                 "tell application process \"Dock\" to " +
+		                 "set {width, height} to " +
+		                 "the size of list 1\n" +
+		                 "return {width, height}";
+
+		String [] args = { "osascript", "-e", command };
+		Process process = runtime.exec(args);
+		InputStreamReader stream = new InputStreamReader(process.getInputStream());
+		BufferedReader stdout = new BufferedReader(stream);
+		String output = stdout.readLine();
+
+		if (output == null)
+		{
+			throw new Exception("Failed to get dock dimensions");
+		}
+
+		int [] dimensions = new int[2];
+
+		dimensions[0] = Integer.parseInt(output.split(", ", 2)[0]);
+		dimensions[1] = Integer.parseInt(output.split(", ", 2)[1]);
+
+		return dimensions;
+	}
 
 } // end of class DesktopBob

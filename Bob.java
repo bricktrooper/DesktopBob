@@ -174,6 +174,11 @@ public class Bob
 		TimeUnit.MILLISECONDS.sleep(200);
 	}
 
+	public void wait(int milliseconds) throws InterruptedException
+	{
+		TimeUnit.MILLISECONDS.sleep(milliseconds);
+	}
+
 	@Override
 	public String toString()
 	{
