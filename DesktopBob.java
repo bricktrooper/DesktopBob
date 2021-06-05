@@ -20,7 +20,7 @@ public class DesktopBob
 		int y = screenHeight - dockHeight - 34;
 		int speed = 4;
 
-		Bob bob = new Bob(xMin, y, speed, 80);
+		Bob bob = new Bob(xMin, y, speed, 110);
 
 		while (true)
 		{

@@ -145,7 +145,12 @@ public class Bob
 			for (int i = 1; i <= 4; i++)
 			{
 				image.setIcon(costumes[i]);
-				sprite.setLocation(x += speed, y);
+
+				if (i == 2 || i == 4)
+				{
+					sprite.setLocation(x += speed, y);
+				}
+
 				TimeUnit.MILLISECONDS.sleep(animationDelay);
 			}
 
@@ -156,7 +161,12 @@ public class Bob
 			for (int i = 6; i <= 9; i++)
 			{
 				image.setIcon(costumes[i]);
-				sprite.setLocation(x -= speed, y);
+
+				if (i == 7 || i == 9)
+				{
+					sprite.setLocation(x -= speed, y);
+				}
+
 				TimeUnit.MILLISECONDS.sleep(animationDelay);
 			}
 
