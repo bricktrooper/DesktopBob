@@ -55,12 +55,12 @@ public class Bob
 
 		// create array of Bob's costumes
 		costumes = new ImageIcon[6];
-		costumes[0] = new ImageIcon("costumes/Bob R.png");
-		costumes[1] = new ImageIcon("costumes/Bob Forward R.png");
-		costumes[2] = new ImageIcon("costumes/Bob Backward R.png");
-		costumes[3] = new ImageIcon("costumes/Bob L.png");
-		costumes[4] = new ImageIcon("costumes/Bob Forward L.png");
-		costumes[5] = new ImageIcon("costumes/Bob Backward L.png");
+		costumes[0] = new ImageIcon(getClass().getResource("costumes/Bob R.png"));
+		costumes[1] = new ImageIcon(getClass().getResource("costumes/Bob Forward R.png"));
+		costumes[2] = new ImageIcon(getClass().getResource("costumes/Bob Backward R.png"));
+		costumes[3] = new ImageIcon(getClass().getResource("costumes/Bob L.png"));
+		costumes[4] = new ImageIcon(getClass().getResource("costumes/Bob Forward L.png"));
+		costumes[5] = new ImageIcon(getClass().getResource("costumes/Bob Backward L.png"));
 
 		sprite.setAlwaysOnTop(true);
 		sprite.setIconImage(costumes[0].getImage());
