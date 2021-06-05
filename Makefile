@@ -7,14 +7,20 @@ SRC = $(wildcard *.java)
 OBJ := $(SRC:.java=.class)
 OBJ := $(addprefix $(ART)/, $(OBJ))
 
+JAR = DesktopBob.jar
+
 $(shell mkdir -p $(ART))
 
-all: $(OBJ)
+all: $(OBJ) $(ART)/$(JAR)
 
 $(ART)/%.class: %.java
-	@echo "JAVAC $<"
+	@echo "JAVAC   $<"
 	@$(JAVAC) $< -d $(ART)
 
+$(ART)/$(JAR): $(OBJ)
+	@echo "JAR     $@"
+	@./jar.sh $(ART)
+
 clean:
-	@echo "RM $(ART)/"
+	@echo "RM      $(ART)/"
 	@rm -rf $(ART)

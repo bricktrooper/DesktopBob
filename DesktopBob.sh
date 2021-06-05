@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -Xdock:icon=icon.png -classpath bin DesktopBob
+java -Xdock:icon=icon.png -jar bin/DesktopBob.jar
