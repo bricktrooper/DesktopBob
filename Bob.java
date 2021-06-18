@@ -54,21 +54,25 @@ public class Bob
 		sprite.add(image);
 
 		// create array of Bob's costumes
-		costumes = new ImageIcon[10];
+		costumes = new ImageIcon[14];
 
 		costumes[0] = new ImageIcon(getClass().getResource("costumes/Stationary R.png"));
 
 		costumes[1] = new ImageIcon(getClass().getResource("costumes/Left Foot Forward R.png"));
-		costumes[2] = new ImageIcon(getClass().getResource("costumes/Right Foot Backward R.png"));
-		costumes[3] = new ImageIcon(getClass().getResource("costumes/Right Foot Forward R.png"));
-		costumes[4] = new ImageIcon(getClass().getResource("costumes/Left Foot Backward R.png"));
+		costumes[2] = new ImageIcon(getClass().getResource("costumes/Left Foot Stride R.png"));
+		costumes[3] = new ImageIcon(getClass().getResource("costumes/Right Foot Backward R.png"));
+		costumes[4] = new ImageIcon(getClass().getResource("costumes/Right Foot Forward R.png"));
+		costumes[5] = new ImageIcon(getClass().getResource("costumes/Right Foot Stride R.png"));
+		costumes[6] = new ImageIcon(getClass().getResource("costumes/Left Foot Backward R.png"));
 
-		costumes[5] = new ImageIcon(getClass().getResource("costumes/Stationary L.png"));
+		costumes[7] = new ImageIcon(getClass().getResource("costumes/Stationary L.png"));
 
-		costumes[6] = new ImageIcon(getClass().getResource("costumes/Left Foot Forward L.png"));
-		costumes[7] = new ImageIcon(getClass().getResource("costumes/Right Foot Backward L.png"));
-		costumes[8] = new ImageIcon(getClass().getResource("costumes/Right Foot Forward L.png"));
-		costumes[9] = new ImageIcon(getClass().getResource("costumes/Left Foot Backward L.png"));
+		costumes[8] = new ImageIcon(getClass().getResource("costumes/Left Foot Forward L.png"));
+		costumes[9] = new ImageIcon(getClass().getResource("costumes/Left Foot Stride L.png"));
+		costumes[10] = new ImageIcon(getClass().getResource("costumes/Right Foot Backward L.png"));
+		costumes[11] = new ImageIcon(getClass().getResource("costumes/Right Foot Forward L.png"));
+		costumes[12] = new ImageIcon(getClass().getResource("costumes/Right Foot Stride L.png"));
+		costumes[13] = new ImageIcon(getClass().getResource("costumes/Left Foot Backward L.png"));
 
 		for (int i = 0; i < costumes.length; i++)
 		{
@@ -142,13 +146,14 @@ public class Bob
 	{
 		if (direction == Direction.RIGHT)
 		{
-			for (int i = 1; i <= 4; i++)
+			for (int i = 1; i <= 6; i++)
 			{
 				image.setIcon(costumes[i]);
 
-				if (i == 2 || i == 4)
+				if (i == 2 || i == 5 || i == 3 || i == 6)
 				{
 					sprite.setLocation(x += speed, y);
+					//TimeUnit.MILLISECONDS.sleep(animationDelay);
 				}
 
 				TimeUnit.MILLISECONDS.sleep(animationDelay);
@@ -158,11 +163,11 @@ public class Bob
 		}
 		else if (direction == Direction.LEFT)
 		{
-			for (int i = 6; i <= 9; i++)
+			for (int i = 7; i <= 13; i++)
 			{
 				image.setIcon(costumes[i]);
 
-				if (i == 7 || i == 9)
+				if (i == 9 || i == 12 || i == 10 || i == 13)
 				{
 					sprite.setLocation(x -= speed, y);
 				}

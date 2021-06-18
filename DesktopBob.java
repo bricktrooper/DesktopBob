@@ -18,9 +18,9 @@ public class DesktopBob
 		int xMin = dockMidpoint - (dockWidth / 2) + 30;
 		int xMax = dockMidpoint + (dockWidth / 2) - 50;
 		int y = screenHeight - dockHeight - 34;
-		int speed = 4;
+		int speed = 3;
 
-		Bob bob = new Bob(xMin, y, speed, 110);
+		Bob bob = new Bob(xMin, y, speed, 90);
 
 		while (true)
 		{
