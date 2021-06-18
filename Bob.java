@@ -175,7 +175,7 @@ public class Bob
 				TimeUnit.MILLISECONDS.sleep(animationDelay);
 			}
 
-			image.setIcon(costumes[5]);
+			image.setIcon(costumes[7]);
 		}
 	}
 
@@ -188,7 +188,7 @@ public class Bob
 		}
 		else if (direction == Direction.LEFT)
 		{
-			image.setIcon(costumes[3]);
+			image.setIcon(costumes[7]);
 			TimeUnit.MILLISECONDS.sleep(200);
 		}
 
