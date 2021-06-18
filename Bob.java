@@ -163,7 +163,7 @@ public class Bob
 		}
 		else if (direction == Direction.LEFT)
 		{
-			for (int i = 7; i <= 13; i++)
+			for (int i = 8; i <= 13; i++)
 			{
 				image.setIcon(costumes[i]);
 
