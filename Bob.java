@@ -10,6 +10,9 @@ public class Bob
 		RIGHT
 	}
 
+	public static final int WIDTH = 18;
+	public static final int HEIGHT = 22;
+
 	private int x;
 	private int y;
 	private int speed;
@@ -45,7 +48,7 @@ public class Bob
 		direction = Direction.RIGHT;
 
 		sprite = new JFrame("Bob");
-		sprite.setSize(50, 46);
+		sprite.setSize(WIDTH, HEIGHT);
 		sprite.setLocation(x, y);
 		sprite.setUndecorated(true);
 		sprite.setBackground(new Color(0, 0, 0, 0));
@@ -76,7 +79,7 @@ public class Bob
 
 		for (int i = 0; i < costumes.length; i++)
 		{
-			Image scaled = costumes[i].getImage().getScaledInstance(18, 22,  Image.SCALE_DEFAULT); // scale it the smooth way
+			Image scaled = costumes[i].getImage().getScaledInstance(WIDTH, HEIGHT,  Image.SCALE_DEFAULT); // scale it the smooth way
 			costumes[i] = new ImageIcon(scaled);  // transform it back
 		}
 
