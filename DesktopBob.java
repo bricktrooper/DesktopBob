@@ -6,6 +6,9 @@ public class DesktopBob
 {
 	public static void main(String [] args) throws Exception
 	{
+		System.setProperty("apple.awt.UIElement", "true");
+		System.setProperty("apple.awt.headless", "true");
+
 		Dimension screenDimensions = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = (int)(screenDimensions.getWidth());
 		int screenHeight = (int)(screenDimensions.getHeight());
