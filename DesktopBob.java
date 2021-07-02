@@ -9,24 +9,30 @@ public class DesktopBob
 		System.setProperty("apple.awt.UIElement", "true");
 		System.setProperty("apple.awt.headless", "true");
 
-		Dimension screenDimensions = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenWidth = (int)(screenDimensions.getWidth());
-		int screenHeight = (int)(screenDimensions.getHeight());
-
-		int [] dockDimensions = getDockDimensions();
-		int dockWidth = dockDimensions[0];
-		int dockHeight = dockDimensions[1];
-
-		int dockMidpoint = screenWidth / 2;
-		int xMin = dockMidpoint - (dockWidth / 2) + 30;
-		int xMax = dockMidpoint + (dockWidth / 2) - 50;
-		int y = screenHeight - dockHeight - Bob.HEIGHT;
-		int speed = 3;
-
-		Bob bob = new Bob(xMin, y, speed, 110);
+		Bob bob = new Bob();
 
 		while (true)
 		{
+			Dimension screenDimensions = Toolkit.getDefaultToolkit().getScreenSize();
+			int screenWidth = (int)(screenDimensions.getWidth());
+			int screenHeight = (int)(screenDimensions.getHeight());
+
+			int [] dockDimensions = getDockDimensions();
+			int dockWidth = dockDimensions[0];
+			int dockHeight = dockDimensions[1];
+
+			int dockMidpoint = screenWidth / 2;
+			int xMin = dockMidpoint - (dockWidth / 2) + 30;
+			int xMax = dockMidpoint + (dockWidth / 2) - 50;
+			int y = screenHeight - dockHeight - Bob.HEIGHT;
+			int speed = 3;
+			int animationDelay = 110;
+
+			bob.setX(xMin);
+			bob.setY(y);
+			bob.setSpeed(speed);
+			bob.setAnimationDelay(animationDelay);
+
 			bob.setDirection(Bob.Direction.RIGHT);
 			bob.wait(200);
 

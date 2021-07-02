@@ -27,14 +27,7 @@ public class Bob
 
 	public Bob()
 	{
-		x = 0;
-		y = 0;
-		speed = 0;
-		animationDelay = 0;
-		direction = Direction.RIGHT;
-		sprite = null;
-		image = null;
-		costumes = null;
+		this(0, 0, 0, 0);
 	}
 
 	// PARAMETRIC CONSTRUCTOR //
