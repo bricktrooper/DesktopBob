@@ -24,7 +24,7 @@ public class DesktopBob
 			int dockMidpoint = screenWidth / 2;
 			int xMin = dockMidpoint - (dockWidth / 2) + 30;
 			int xMax = dockMidpoint + (dockWidth / 2) - 50;
-			int y = screenHeight - dockHeight - Bob.HEIGHT;
+			int y = screenHeight - dockHeight - Bob.HEIGHT - 5;
 			int speed = 3;
 			int animationDelay = 110;
 
