@@ -17,14 +17,17 @@ public class DesktopBob
 			int screenWidth = (int)(screenDimensions.getWidth());
 			int screenHeight = (int)(screenDimensions.getHeight());
 
-			int [] dockDimensions = getDockDimensions();
-			int dockWidth = dockDimensions[0];
-			int dockHeight = dockDimensions[1];
+			//int [] dockDimensions = getDockDimensions();
+			//int dockWidth = dockDimensions[0];
+			//int dockHeight = dockDimensions[1];
 
-			int dockMidpoint = screenWidth / 2;
-			int xMin = dockMidpoint - (dockWidth / 2) + 30;
-			int xMax = dockMidpoint + (dockWidth / 2) - 50;
-			int y = screenHeight - dockHeight - Bob.HEIGHT;
+			//int dockMidpoint = screenWidth / 2;
+			//int xMin = dockMidpoint - (dockWidth / 2) + 30;
+			//int xMax = dockMidpoint + (dockWidth / 2) - 50;
+			//int y = screenHeight - dockHeight - Bob.HEIGHT;
+			int xMin = 0;
+			int xMax = screenWidth - Bob.WIDTH;
+			int y = screenHeight - Bob.HEIGHT;
 			int speed = 3;
 			int animationDelay = 110;
 
