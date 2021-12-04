@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
-class Bob
+public class Bob
 {
 	public enum Direction
 	{
@@ -176,9 +176,7 @@ class Bob
 					i == RIGHT_FOOT_BACKWARD_R ||
 					i == LEFT_FOOT_BACKWARD_R)
 				{
-					//window.setLocation(x, y);
-					sprite.setLocation(10, 0);
-					//window.setLocation(x += speed, y);
+					sprite.setLocation(x += speed, y);
 				}
 
 				TimeUnit.MILLISECONDS.sleep(animationDelay);
@@ -198,7 +196,7 @@ class Bob
 					i == RIGHT_FOOT_BACKWARD_L ||
 					i == LEFT_FOOT_BACKWARD_L)
 				{
-					//window.setLocation(x -= speed, y);
+					sprite.setLocation(x -= speed, y);
 				}
 
 				TimeUnit.MILLISECONDS.sleep(animationDelay);

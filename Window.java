@@ -1,6 +1,7 @@
 import javax.swing.*;
+import java.awt.*;
 
-class Window
+public class Window
 {
 	private int width;
 	private int height;
@@ -8,7 +9,7 @@ class Window
 	private int y;
 	private JFrame window;
 
-	Window(int width, int height, int x, int y)
+	Window(int x, int y, int width, int height)
 	{
 		this.width = width;
 		this.height = height;
@@ -16,13 +17,12 @@ class Window
 		this.y = y;
 
 		window = new JFrame("DesktopBob");
-		window.setSize(width, height);
-		window.setLocation(x, y);
+		updateSize();
+		updateLocation();
 		window.setUndecorated(true);
-		//window.setBackground(new Color(0, 0, 0, 0));
+		window.setBackground(new Color(0, 0, 0, 0));
 
 		window.setAlwaysOnTop(true);
-		//window.setIconImage(costumes[0].getImage());
 		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		window.setVisible(true);
 	}
@@ -45,6 +45,36 @@ class Window
 	public int getY()
 	{
 		return y;
+	}
+
+	public void setWidth(int width)
+	{
+		this.width = width;
+	}
+
+	public void setHeight(int height)
+	{
+		this.height = height;
+	}
+
+	public void setX(int x)
+	{
+		this.x = x;
+	}
+
+	public void setY(int y)
+	{
+		this.y = y;
+	}
+
+	public void updateLocation()
+	{
+		window.setLocation(x, y);
+	}
+
+	public void updateSize()
+	{
+		window.setSize(width, height);
 	}
 
 	public void add(JLabel sprite)
