@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
-public class Bob
+class Bob
 {
 	public enum Direction
 	{
@@ -19,18 +19,27 @@ public class Bob
 	private int animationDelay;
 	private Direction direction;
 
-	private JFrame sprite;
-	private JLabel image;
+	private JLabel sprite;
 	private ImageIcon [] costumes;
 
-	// DEFAULT CONSTRUCTOR //
+	// costume array indicies
+	public static final int STATIONARY_R = 0;
+	public static final int LEFT_FOOT_FORWARD_R = 1;
+	public static final int LEFT_FOOT_STRIDE_R = 2;
+	public static final int RIGHT_FOOT_BACKWARD_R = 3;
+	public static final int RIGHT_FOOT_FORWARD_R = 4;
+	public static final int RIGHT_FOOT_STRIDE_R = 5;
+	public static final int LEFT_FOOT_BACKWARD_R = 6;
+	public static final int STATIONARY_L = 7;
+	public static final int LEFT_FOOT_FORWARD_L = 8;
+	public static final int LEFT_FOOT_STRIDE_L = 9;
+	public static final int RIGHT_FOOT_BACKWARD_L = 10;
+	public static final int RIGHT_FOOT_FORWARD_L = 11;
+	public static final int RIGHT_FOOT_STRIDE_L = 12;
+	public static final int LEFT_FOOT_BACKWARD_L = 13;
+	public static final int COSTUME_COUNT = 14;
 
-	public Bob()
-	{
-		this(0, 0, 0, 0);
-	}
-
-	// PARAMETRIC CONSTRUCTOR //
+	// CONSTRUCTOR //
 
 	public Bob(int x, int y, int speed, int animationDelay)
 	{
@@ -38,48 +47,24 @@ public class Bob
 		this.y = y;
 		this.speed = speed;
 		this.animationDelay = animationDelay;
-		direction = Direction.RIGHT;
+		this.direction = Direction.RIGHT;
 
-		sprite = new JFrame("Bob");
-		sprite.setSize(WIDTH, HEIGHT);
-		sprite.setLocation(x, y);
-		sprite.setUndecorated(true);
-		sprite.setBackground(new Color(0, 0, 0, 0));
+		//window = new JFrame("DesktopBob");
+		//window.setSize(1000, HEIGHT);
+		//window.setLocation(x, y);
+		//window.setUndecorated(true);
+		////window.setBackground(new Color(0, 0, 0, 0));
 
-		image = new JLabel();
-		sprite.add(image);
+		sprite = new JLabel();
+		//window.add(image);
 
 		// create array of Bob's costumes
-		costumes = new ImageIcon[14];
+		costumes = loadCostumes();
 
-		costumes[0] = new ImageIcon(getClass().getResource("costumes/Stationary R.png"));
-
-		costumes[1] = new ImageIcon(getClass().getResource("costumes/Left Foot Forward R.png"));
-		costumes[2] = new ImageIcon(getClass().getResource("costumes/Left Foot Stride R.png"));
-		costumes[3] = new ImageIcon(getClass().getResource("costumes/Right Foot Backward R.png"));
-		costumes[4] = new ImageIcon(getClass().getResource("costumes/Right Foot Forward R.png"));
-		costumes[5] = new ImageIcon(getClass().getResource("costumes/Right Foot Stride R.png"));
-		costumes[6] = new ImageIcon(getClass().getResource("costumes/Left Foot Backward R.png"));
-
-		costumes[7] = new ImageIcon(getClass().getResource("costumes/Stationary L.png"));
-
-		costumes[8] = new ImageIcon(getClass().getResource("costumes/Left Foot Forward L.png"));
-		costumes[9] = new ImageIcon(getClass().getResource("costumes/Left Foot Stride L.png"));
-		costumes[10] = new ImageIcon(getClass().getResource("costumes/Right Foot Backward L.png"));
-		costumes[11] = new ImageIcon(getClass().getResource("costumes/Right Foot Forward L.png"));
-		costumes[12] = new ImageIcon(getClass().getResource("costumes/Right Foot Stride L.png"));
-		costumes[13] = new ImageIcon(getClass().getResource("costumes/Left Foot Backward L.png"));
-
-		for (int i = 0; i < costumes.length; i++)
-		{
-			Image scaled = costumes[i].getImage().getScaledInstance(WIDTH, HEIGHT,  Image.SCALE_DEFAULT); // scale it the smooth way
-			costumes[i] = new ImageIcon(scaled);  // transform it back
-		}
-
-		sprite.setAlwaysOnTop(true);
-		sprite.setIconImage(costumes[0].getImage());
-		sprite.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		sprite.setVisible(true);
+		//window.setAlwaysOnTop(true);
+		//window.setIconImage(costumes[0].getImage());
+		//window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		//window.setVisible(true);
 	}
 
 	// ACCESSORS //
@@ -109,6 +94,11 @@ public class Bob
 		return direction;
 	}
 
+	public JLabel getSprite()
+	{
+		return sprite;
+	}
+
 	// MUTATORS //
 
 	public void setX(int x)
@@ -136,42 +126,85 @@ public class Bob
 		this.direction = direction;
 	}
 
+	// COSTUMES //
+
+	private ImageIcon [] loadCostumes()
+	{
+		costumes = new ImageIcon[COSTUME_COUNT];
+
+		costumes[STATIONARY_R] = new ImageIcon(getClass().getResource("costumes/Stationary R.png"));
+		costumes[LEFT_FOOT_FORWARD_R] = new ImageIcon(getClass().getResource("costumes/Left Foot Forward R.png"));
+		costumes[LEFT_FOOT_STRIDE_R] = new ImageIcon(getClass().getResource("costumes/Left Foot Stride R.png"));
+		costumes[RIGHT_FOOT_BACKWARD_R] = new ImageIcon(getClass().getResource("costumes/Right Foot Backward R.png"));
+		costumes[RIGHT_FOOT_FORWARD_R] = new ImageIcon(getClass().getResource("costumes/Right Foot Forward R.png"));
+		costumes[RIGHT_FOOT_STRIDE_R] = new ImageIcon(getClass().getResource("costumes/Right Foot Stride R.png"));
+		costumes[LEFT_FOOT_BACKWARD_R] = new ImageIcon(getClass().getResource("costumes/Left Foot Backward R.png"));
+		costumes[STATIONARY_L] = new ImageIcon(getClass().getResource("costumes/Stationary L.png"));
+		costumes[LEFT_FOOT_FORWARD_L] = new ImageIcon(getClass().getResource("costumes/Left Foot Forward L.png"));
+		costumes[LEFT_FOOT_STRIDE_L] = new ImageIcon(getClass().getResource("costumes/Left Foot Stride L.png"));
+		costumes[RIGHT_FOOT_BACKWARD_L] = new ImageIcon(getClass().getResource("costumes/Right Foot Backward L.png"));
+		costumes[RIGHT_FOOT_FORWARD_L] = new ImageIcon(getClass().getResource("costumes/Right Foot Forward L.png"));
+		costumes[RIGHT_FOOT_STRIDE_L] = new ImageIcon(getClass().getResource("costumes/Right Foot Stride L.png"));
+		costumes[LEFT_FOOT_BACKWARD_L] = new ImageIcon(getClass().getResource("costumes/Left Foot Backward L.png"));
+
+		for (int i = 0; i < costumes.length; i++)
+		{
+			Image scaled = costumes[i].getImage().getScaledInstance(WIDTH, HEIGHT, Image.SCALE_DEFAULT); // scale it the smooth way
+			costumes[i] = new ImageIcon(scaled);  // transform it back
+		}
+
+		return costumes;
+	}
+
+	public void setCostume(int index)
+	{
+		sprite.setIcon(costumes[index]);
+	}
+
 	// WALK //
 
 	public void walk() throws InterruptedException
 	{
 		if (direction == Direction.RIGHT)
 		{
-			for (int i = 1; i <= 6; i++)
+			for (int i = LEFT_FOOT_FORWARD_R; i <= LEFT_FOOT_BACKWARD_R; i++)
 			{
-				image.setIcon(costumes[i]);
+				setCostume(i);
 
-				if (i == 2 || i == 5 || i == 3 || i == 6)
+				if (i == LEFT_FOOT_STRIDE_R ||
+					i == RIGHT_FOOT_STRIDE_R ||
+					i == RIGHT_FOOT_BACKWARD_R ||
+					i == LEFT_FOOT_BACKWARD_R)
 				{
-					sprite.setLocation(x += speed, y);
-					//TimeUnit.MILLISECONDS.sleep(animationDelay);
+					//window.setLocation(x, y);
+					sprite.setLocation(10, 0);
+					//window.setLocation(x += speed, y);
 				}
 
 				TimeUnit.MILLISECONDS.sleep(animationDelay);
 			}
 
-			image.setIcon(costumes[0]);
+			setCostume(STATIONARY_R);
 		}
+
 		else if (direction == Direction.LEFT)
 		{
 			for (int i = 8; i <= 13; i++)
 			{
-				image.setIcon(costumes[i]);
+				setCostume(i);
 
-				if (i == 9 || i == 12 || i == 10 || i == 13)
+				if (i == LEFT_FOOT_STRIDE_L ||
+					i == RIGHT_FOOT_STRIDE_L ||
+					i == RIGHT_FOOT_BACKWARD_L ||
+					i == LEFT_FOOT_BACKWARD_L)
 				{
-					sprite.setLocation(x -= speed, y);
+					//window.setLocation(x -= speed, y);
 				}
 
 				TimeUnit.MILLISECONDS.sleep(animationDelay);
 			}
 
-			image.setIcon(costumes[7]);
+			setCostume(STATIONARY_L);
 		}
 	}
 
@@ -179,20 +212,20 @@ public class Bob
 	{
 		if (direction == Direction.RIGHT)
 		{
-			image.setIcon(costumes[0]);
+			setCostume(STATIONARY_R);
 			TimeUnit.MILLISECONDS.sleep(200);
 		}
 		else if (direction == Direction.LEFT)
 		{
-			image.setIcon(costumes[7]);
+			setCostume(STATIONARY_L);
 			TimeUnit.MILLISECONDS.sleep(200);
 		}
 
 		for (int i = 0; i < jumps; i++)
 		{
-			sprite.setLocation(x, y - 14);
+			//window.setLocation(x, y - 14);
 			TimeUnit.MILLISECONDS.sleep(100);
-			sprite.setLocation(x, y);
+			//window.setLocation(x, y);
 			TimeUnit.MILLISECONDS.sleep(100);
 		}
 
