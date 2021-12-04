@@ -19,7 +19,8 @@ public class Bob
 	private int animationDelay;
 	private Direction direction;
 
-	private JLabel sprite;
+	private JFrame sprite;
+	private JLabel image;
 	private ImageIcon [] costumes;
 
 	// costume array indicies
@@ -49,22 +50,19 @@ public class Bob
 		this.animationDelay = animationDelay;
 		this.direction = Direction.RIGHT;
 
-		//window = new JFrame("DesktopBob");
-		//window.setSize(1000, HEIGHT);
-		//window.setLocation(x, y);
-		//window.setUndecorated(true);
-		////window.setBackground(new Color(0, 0, 0, 0));
+		sprite = new JFrame("DesktopBob");
+		sprite.setLocation(x, y);
+		sprite.setSize(WIDTH, HEIGHT);
+		sprite.setUndecorated(true);
+		sprite.setBackground(new Color(0, 0, 0, 0));
+		sprite.setAlwaysOnTop(true);
+		sprite.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		sprite.setVisible(true);
 
-		sprite = new JLabel();
-		//window.add(image);
+		image = new JLabel();
+		sprite.add(image);
 
-		// create array of Bob's costumes
-		costumes = loadCostumes();
-
-		//window.setAlwaysOnTop(true);
-		//window.setIconImage(costumes[0].getImage());
-		//window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		//window.setVisible(true);
+		costumes = loadCostumes();   // create array of Bob's costumes
 	}
 
 	// ACCESSORS //
@@ -94,21 +92,16 @@ public class Bob
 		return direction;
 	}
 
-	public JLabel getSprite()
-	{
-		return sprite;
-	}
-
 	// MUTATORS //
 
 	public void setX(int x)
 	{
-		this.x = x;
+		setLocation(x, this.y);
 	}
 
 	public void setY(int y)
 	{
-		this.y = y;
+		setLocation(this.x, y);
 	}
 
 	public void setSpeed(int speed)
@@ -124,6 +117,13 @@ public class Bob
 	public void setDirection(Direction direction)
 	{
 		this.direction = direction;
+	}
+
+	public void setLocation(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
+		sprite.setLocation(x, y);
 	}
 
 	// COSTUMES //
@@ -158,7 +158,7 @@ public class Bob
 
 	public void setCostume(int index)
 	{
-		sprite.setIcon(costumes[index]);
+		image.setIcon(costumes[index]);
 	}
 
 	// WALK //
@@ -176,10 +176,10 @@ public class Bob
 					i == RIGHT_FOOT_BACKWARD_R ||
 					i == LEFT_FOOT_BACKWARD_R)
 				{
-					sprite.setLocation(x += speed, y);
+					setLocation(x += speed, y);
 				}
 
-				TimeUnit.MILLISECONDS.sleep(animationDelay);
+				wait(animationDelay);
 			}
 
 			setCostume(STATIONARY_R);
@@ -196,10 +196,10 @@ public class Bob
 					i == RIGHT_FOOT_BACKWARD_L ||
 					i == LEFT_FOOT_BACKWARD_L)
 				{
-					sprite.setLocation(x -= speed, y);
+					setLocation(x -= speed, y);
 				}
 
-				TimeUnit.MILLISECONDS.sleep(animationDelay);
+				wait(animationDelay);
 			}
 
 			setCostume(STATIONARY_L);
@@ -211,20 +211,20 @@ public class Bob
 		if (direction == Direction.RIGHT)
 		{
 			setCostume(STATIONARY_R);
-			TimeUnit.MILLISECONDS.sleep(200);
+			wait(200);
 		}
 		else if (direction == Direction.LEFT)
 		{
 			setCostume(STATIONARY_L);
-			TimeUnit.MILLISECONDS.sleep(200);
+			wait(200);
 		}
 
 		for (int i = 0; i < jumps; i++)
 		{
 			//window.setLocation(x, y - 14);
-			TimeUnit.MILLISECONDS.sleep(100);
+			wait(100);
 			//window.setLocation(x, y);
-			TimeUnit.MILLISECONDS.sleep(100);
+			wait(100);
 		}
 
 		TimeUnit.MILLISECONDS.sleep(200);
@@ -235,10 +235,6 @@ public class Bob
 		TimeUnit.MILLISECONDS.sleep(milliseconds);
 	}
 
-	@Override
-	public String toString()
-	{
-		return String.format("X: %4d Y: %4d Direction: %s", x, y, direction);
-	}
+
 
 } // end of class Bob

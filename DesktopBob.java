@@ -7,9 +7,9 @@ public class DesktopBob
 		System.setProperty("apple.awt.UIElement", "true");
 		System.setProperty("apple.awt.headless", "true");
 
-		Window window = new Window(0, 0, 0, 0);
-		Bob bob = new Bob(0, 0, 0, 0);
-		window.add(bob.getSprite());
+		int speed = 3;
+		int animationDelay = 110;
+		Bob bob = new Bob(0, 0, speed, animationDelay);
 
 		while (true)
 		{
@@ -17,25 +17,11 @@ public class DesktopBob
 			int screenWidth = (int)(screenDimensions.getWidth());
 			int screenHeight = (int)(screenDimensions.getHeight());
 
-			window.setX(0);
-			window.setY(screenHeight - Bob.HEIGHT);
-			window.updateLocation();
-
-			window.setWidth(screenWidth);
-			window.setHeight(Bob.HEIGHT);
-			window.updateSize();
-
-			// Bob's (x, y) is relative to the window, not the screen
 			int xMin = 0;
 			int xMax = screenWidth - Bob.WIDTH;
-			int y = 0;
-			int speed = 3;
-			int animationDelay = 110;
+			int y = screenHeight - Bob.HEIGHT;
 
-			bob.setX(xMin);
-			bob.setY(y);
-			bob.setSpeed(speed);
-			bob.setAnimationDelay(animationDelay);
+			bob.setLocation(xMin, y);
 
 			bob.setDirection(Bob.Direction.RIGHT);
 			bob.wait(200);
