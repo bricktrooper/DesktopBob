@@ -21,6 +21,9 @@ $(ART)/$(JAR): $(OBJ)
 	@echo "JAR     $@"
 	@./jar.sh $(ART)
 
+run: all
+	@./DesktopBob.sh
+
 clean:
 	@echo "RM      $(ART)/"
 	@rm -rf $(ART)
