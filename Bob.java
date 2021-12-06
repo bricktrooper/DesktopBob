@@ -10,8 +10,8 @@ public class Bob
 		RIGHT
 	}
 
-	public static final int WIDTH = 18;
-	public static final int HEIGHT = 22;
+	public static final int WIDTH = 22;
+	public static final int HEIGHT = 24;
 
 	private int x;
 	private int y;
